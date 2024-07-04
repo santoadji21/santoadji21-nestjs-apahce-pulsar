@@ -1,0 +1,368 @@
+{
+    "apiVersion": "argoproj.io/v1alpha1",
+    "kind": "Application",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Application\",\"metadata\":{\"annotations\":{},\"finalizers\":[\"resources-finalizer.argocd.argoproj.io\"],\"labels\":{\"app.kubernetes.io/instance\":\"default\"},\"name\":\"redis\",\"namespace\":\"argocd\"},\"spec\":{\"destination\":{\"namespace\":\"redis\",\"server\":\"https://kubernetes.default.svc\"},\"project\":\"default\",\"source\":{\"chart\":\"redis\",\"helm\":{\"values\":\"replica:\\n  replicaCount: 4\\n\"},\"repoURL\":\"https://charts.bitnami.com/bitnami\",\"targetRevision\":\"18.9.1\"},\"syncPolicy\":{\"automated\":{\"prune\":true,\"selfHeal\":true},\"syncOptions\":[\"CreateNamespace=true\"]},\"values\":{\"master\":{\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"250m\",\"memory\":\"256Mi\"}}},\"replica\":{\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"250m\",\"memory\":\"256Mi\"}}}}}}\n"
+        },
+        "creationTimestamp": "2024-06-16T02:37:49Z",
+        "deletionGracePeriodSeconds": 0,
+        "deletionTimestamp": "2024-07-03T22:19:16Z",
+        "finalizers": [
+            "resources-finalizer.argocd.argoproj.io"
+        ],
+        "generation": 2644,
+        "labels": {
+            "app.kubernetes.io/instance": "default"
+        },
+        "name": "redis",
+        "namespace": "argocd",
+        "resourceVersion": "836537",
+        "uid": "0b86cb43-f932-4c60-ac34-88d2d03e32c0"
+    },
+    "spec": {
+        "destination": {
+            "namespace": "redis",
+            "server": "https://kubernetes.default.svc"
+        },
+        "project": "default",
+        "source": {
+            "chart": "redis",
+            "helm": {
+                "values": "replica:\n  replicaCount: 4\n"
+            },
+            "repoURL": "https://charts.bitnami.com/bitnami",
+            "targetRevision": "18.9.1"
+        },
+        "syncPolicy": {
+            "automated": {
+                "prune": true,
+                "selfHeal": true
+            },
+            "syncOptions": [
+                "CreateNamespace=true"
+            ]
+        }
+    },
+    "status": {
+        "controllerNamespace": "argocd",
+        "health": {
+            "status": "Progressing"
+        },
+        "history": [
+            {
+                "deployStartedAt": "2024-06-16T02:38:07Z",
+                "deployedAt": "2024-06-16T02:38:10Z",
+                "id": 0,
+                "initiatedBy": {
+                    "automated": true
+                },
+                "revision": "18.9.1",
+                "source": {
+                    "chart": "redis",
+                    "helm": {
+                        "values": "replica:\n  replicaCount: 4\n"
+                    },
+                    "repoURL": "https://charts.bitnami.com/bitnami",
+                    "targetRevision": "18.9.1"
+                }
+            }
+        ],
+        "operationState": {
+            "finishedAt": "2024-07-03T22:19:04Z",
+            "message": "successfully synced (all tasks run)",
+            "operation": {
+                "initiatedBy": {
+                    "automated": true
+                },
+                "retry": {
+                    "limit": 5
+                },
+                "sync": {
+                    "prune": true,
+                    "resources": [
+                        {
+                            "kind": "Service",
+                            "name": "redis-replicas"
+                        },
+                        {
+                            "group": "apps",
+                            "kind": "StatefulSet",
+                            "name": "redis-replicas"
+                        },
+                        {
+                            "kind": "ConfigMap",
+                            "name": "redis-health"
+                        },
+                        {
+                            "kind": "Service",
+                            "name": "redis-headless"
+                        },
+                        {
+                            "kind": "Service",
+                            "name": "redis-master"
+                        },
+                        {
+                            "kind": "Secret",
+                            "name": "redis"
+                        },
+                        {
+                            "kind": "ConfigMap",
+                            "name": "redis-configuration"
+                        },
+                        {
+                            "kind": "ConfigMap",
+                            "name": "redis-scripts"
+                        },
+                        {
+                            "group": "apps",
+                            "kind": "StatefulSet",
+                            "name": "redis-master"
+                        }
+                    ],
+                    "revision": "18.9.1",
+                    "syncOptions": [
+                        "CreateNamespace=true"
+                    ]
+                }
+            },
+            "phase": "Succeeded",
+            "startedAt": "2024-07-03T22:19:04Z",
+            "syncResult": {
+                "resources": [
+                    {
+                        "group": "",
+                        "hookPhase": "Running",
+                        "kind": "Secret",
+                        "message": "secret/redis created",
+                        "name": "redis",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "",
+                        "hookPhase": "Running",
+                        "kind": "ConfigMap",
+                        "message": "configmap/redis-configuration created",
+                        "name": "redis-configuration",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "",
+                        "hookPhase": "Running",
+                        "kind": "ConfigMap",
+                        "message": "configmap/redis-scripts created",
+                        "name": "redis-scripts",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "",
+                        "hookPhase": "Running",
+                        "kind": "ConfigMap",
+                        "message": "configmap/redis-health created",
+                        "name": "redis-health",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "",
+                        "hookPhase": "Running",
+                        "kind": "Service",
+                        "message": "service/redis-headless created",
+                        "name": "redis-headless",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "",
+                        "hookPhase": "Running",
+                        "kind": "Service",
+                        "message": "service/redis-replicas created",
+                        "name": "redis-replicas",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "",
+                        "hookPhase": "Running",
+                        "kind": "Service",
+                        "message": "service/redis-master created",
+                        "name": "redis-master",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "apps",
+                        "hookPhase": "Running",
+                        "kind": "StatefulSet",
+                        "message": "statefulset.apps/redis-master created",
+                        "name": "redis-master",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "apps",
+                        "hookPhase": "Running",
+                        "kind": "StatefulSet",
+                        "message": "statefulset.apps/redis-replicas created",
+                        "name": "redis-replicas",
+                        "namespace": "redis",
+                        "status": "Synced",
+                        "syncPhase": "Sync",
+                        "version": "v1"
+                    }
+                ],
+                "revision": "18.9.1",
+                "source": {
+                    "chart": "redis",
+                    "helm": {
+                        "values": "replica:\n  replicaCount: 4\n"
+                    },
+                    "repoURL": "https://charts.bitnami.com/bitnami",
+                    "targetRevision": "18.9.1"
+                }
+            }
+        },
+        "reconciledAt": "2024-07-03T22:19:04Z",
+        "resources": [
+            {
+                "kind": "ConfigMap",
+                "name": "redis-configuration",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "kind": "ConfigMap",
+                "name": "redis-health",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "kind": "ConfigMap",
+                "name": "redis-scripts",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "kind": "Secret",
+                "name": "redis",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "health": {
+                    "status": "Healthy"
+                },
+                "kind": "Service",
+                "name": "redis-headless",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "health": {
+                    "status": "Healthy"
+                },
+                "kind": "Service",
+                "name": "redis-master",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "health": {
+                    "status": "Healthy"
+                },
+                "kind": "Service",
+                "name": "redis-replicas",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "kind": "ServiceAccount",
+                "name": "redis-master",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "kind": "ServiceAccount",
+                "name": "redis-replica",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "group": "apps",
+                "health": {
+                    "message": "Waiting for 1 pods to be ready...",
+                    "status": "Progressing"
+                },
+                "kind": "StatefulSet",
+                "name": "redis-master",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            },
+            {
+                "group": "apps",
+                "health": {
+                    "message": "Waiting for 4 pods to be ready...",
+                    "status": "Progressing"
+                },
+                "kind": "StatefulSet",
+                "name": "redis-replicas",
+                "namespace": "redis",
+                "status": "Synced",
+                "version": "v1"
+            }
+        ],
+        "sourceType": "Helm",
+        "summary": {
+            "images": [
+                "docker.io/bitnami/redis:7.2.4-debian-11-r2"
+            ]
+        },
+        "sync": {
+            "comparedTo": {
+                "destination": {
+                    "namespace": "redis",
+                    "server": "https://kubernetes.default.svc"
+                },
+                "source": {
+                    "chart": "redis",
+                    "helm": {
+                        "values": "replica:\n  replicaCount: 4\n"
+                    },
+                    "repoURL": "https://charts.bitnami.com/bitnami",
+                    "targetRevision": "18.9.1"
+                }
+            },
+            "revision": "18.9.1",
+            "status": "Synced"
+        }
+    }
+}
